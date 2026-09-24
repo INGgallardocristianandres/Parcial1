@@ -1,59 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.EntrenadorViewController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="700.0" spacing="12.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.EntrenadorViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <VBox alignment="CENTER" style="-fx-background-color: #C62828; -fx-background-radius: 8;">
-            <padding>
-                <Insets bottom="10.0" top="10.0" />
-            </padding>
-            <children>
-                <Label text="Registro de Entrenadores" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestión de Entrenadores" />
 
-        <GridPane hgap="10.0" vgap="10.0">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
             <children>
-                <TextField fx:id="txtId" promptText="ID Entrenador" style="-fx-border-color: #C62828; -fx-border-radius: 4;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="txtNombre" promptText="Nombre Completo" style="-fx-border-color: #C62828; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <TextField fx:id="txtTelefono" promptText="Teléfono" style="-fx-border-color: #C62828; -fx-border-radius: 4;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="txtCorreo" promptText="Correo Electrónico" style="-fx-border-color: #C62828; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <ComboBox fx:id="cmbEspecialidad" maxWidth="1.7976931348623157E308" promptText="Especialidad" style="-fx-border-color: #C62828; -fx-border-radius: 4; -fx-background-color: #FFF;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField fx:id="txtTarifa" promptText="Tarifa por Hora ($)" style="-fx-border-color: #C62828; -fx-border-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            </children>
-        </GridPane>
-
-        <HBox alignment="CENTER">
-            <children>
-                <Button onAction="#handleRegistrarEntrenador" style="-fx-background-color: #B71C1C; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Registrar Entrenador" />
+                <Label prefWidth="150.0" text="ID / Identificación:" />
+                <TextField fx:id="txtId" prefWidth="250.0" />
             </children>
         </HBox>
 
-        <TableView fx:id="tblEntrenadores" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Nombre Completo:" />
+                <TextField fx:id="txtNombre" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Teléfono:" />
+                <TextField fx:id="txtTelefono" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Correo Electrónico:" />
+                <TextField fx:id="txtCorreo" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Especialidad:" />
+                <ComboBox fx:id="cmbEspecialidad" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Tarifa por Hora:" />
+                <TextField fx:id="txtTarifa" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="15.0">
+            <children>
+                <Button onAction="#handleGuardarEntrenador" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;" text="Guardar Entrenador" />
+                <Button onAction="#handleEliminarEntrenador" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Eliminar Seleccionado" />
+                <Button onAction="#onVolver" text="Volver" />
+            </children>
+        </HBox>
+
+        <TableView fx:id="tblEntrenadores" prefHeight="220.0" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="80.0" text="ID" />
-                <TableColumn fx:id="colNombre" prefWidth="130.0" text="Nombre" />
-                <TableColumn fx:id="colEspecialidad" prefWidth="120.0" text="Especialidad" />
-                <TableColumn fx:id="colTarifa" prefWidth="100.0" text="Tarifa/Hora" />
+                <TableColumn fx:id="colId" prefWidth="90.0" text="ID" />
+                <TableColumn fx:id="colNombre" prefWidth="160.0" text="Nombre" />
+                <TableColumn fx:id="colTelefono" prefWidth="100.0" text="Teléfono" />
+                <TableColumn fx:id="colCorreo" prefWidth="130.0" text="Correo" />
+                <TableColumn fx:id="colEspecialidad" prefWidth="100.0" text="Especialidad" />
+                <TableColumn fx:id="colTarifa" prefWidth="80.0" text="Tarifa/h" />
             </columns>
         </TableView>
     </children>
 </VBox>
+
