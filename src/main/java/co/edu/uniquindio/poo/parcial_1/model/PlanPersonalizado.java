@@ -11,20 +11,17 @@ public class PlanPersonalizado extends PlanEntrenamiento {
     private String objetivoCliente;
 
     /**
-     * Crea un plan personalizado con valores predeterminados. Pensado para
-     * ser construido a través de {@link PlanPersonalizadoFactory} y luego
-     * ajustado con los datos propios del cliente.
+     * Crea un plan personalizado con los datos indicados. Pensado para
+     * ser construido a través de {@link PlanPersonalizadoFactory}.
      */
-    public PlanPersonalizado() {
-        super("PPZ-" + System.currentTimeMillis(),
-                "Plan Personalizado",
-                "Plan diseñado a medida según el objetivo del cliente",
-                12,
-                220000.0,
-                EstadoPlan.ACTIVO);
-        this.cantidadSesiones = 12;
-        this.especialidadRequerida = Especialidad.HIPERTROFIA;
-        this.objetivoCliente = "Por definir";
+    public PlanPersonalizado(String codigo, String nombre, String descripcion,
+                             int duracionMeses, double valorMensual,
+                             int cantidadSesiones, Especialidad especialidadRequerida,
+                             String objetivoCliente) {
+        super(codigo, nombre, descripcion, duracionMeses, valorMensual);
+        this.cantidadSesiones = cantidadSesiones;
+        this.especialidadRequerida = especialidadRequerida;
+        this.objetivoCliente = objetivoCliente;
     }
 
     /**

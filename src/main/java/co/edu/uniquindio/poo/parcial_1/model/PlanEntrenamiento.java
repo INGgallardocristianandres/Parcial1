@@ -10,34 +10,35 @@ public abstract class PlanEntrenamiento implements IPlan {
     protected String codigo;
     protected String nombre;
     protected String descripcion;
-    protected int duracionEnSemanas;
-    protected double precio;
+    protected int duracionMeses;
+    protected double valorMensual;
     protected EstadoPlan estado;
 
     /**
      * Constructor base para la creación de un plan de entrenamiento.
+     * El estado inicial siempre queda en ACTIVO.
      */
     public PlanEntrenamiento(String codigo, String nombre, String descripcion,
-                             int duracionEnSemanas, double precio, EstadoPlan estado) {
+                             int duracionMeses, double valorMensual) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.duracionEnSemanas = duracionEnSemanas;
-        this.precio = precio;
-        this.estado = estado;
+        this.duracionMeses = duracionMeses;
+        this.valorMensual = valorMensual;
+        this.estado = EstadoPlan.ACTIVO;
     }
 
     /**
      * Constructor de copia usado internamente por las subclases para
      * implementar {@link #clonar()} (patrón Prototype).
      */
-    protected PlanEntrenamiento(PlanEntrenamiento clone) {
-        this.codigo = clone.codigo;
-        this.nombre = clone.nombre;
-        this.descripcion = clone.descripcion;
-        this.duracionEnSemanas = clone.duracionEnSemanas;
-        this.precio = clone.precio;
-        this.estado = clone.estado;
+    protected PlanEntrenamiento(PlanEntrenamiento otro) {
+        this.codigo = otro.codigo;
+        this.nombre = otro.nombre;
+        this.descripcion = otro.descripcion;
+        this.duracionMeses = otro.duracionMeses;
+        this.valorMensual = otro.valorMensual;
+        this.estado = otro.estado;
     }
 
     /**
@@ -49,14 +50,14 @@ public abstract class PlanEntrenamiento implements IPlan {
     public abstract double calcularAdicional();
 
     /**
-     * Calcula el valor base total del plan, sumando el precio fijo del
-     * plan con el adicional propio de cada subclase. Este es el método
-     * que utiliza {@code Inscripcion} para calcular el pago total.
+     * Calcula el valor base total del plan, sumando el valor mensual fijo
+     * con el adicional propio de cada subclase. Este es el método que
+     * utiliza {@code Inscripcion} para calcular el pago total.
      *
-     * @return Precio total del plan (precio + adicional).
+     * @return Valor total del plan (valorMensual + adicional).
      */
     public double calcularValorBase() {
-        return this.precio + calcularAdicional();
+        return this.valorMensual + calcularAdicional();
     }
 
     @Override
@@ -86,20 +87,20 @@ public abstract class PlanEntrenamiento implements IPlan {
         this.descripcion = descripcion;
     }
 
-    public int getDuracionEnSemanas() {
-        return duracionEnSemanas;
+    public int getDuracionMeses() {
+        return duracionMeses;
     }
 
-    public void setDuracionEnSemanas(int duracionEnSemanas) {
-        this.duracionEnSemanas = duracionEnSemanas;
+    public void setDuracionMeses(int duracionMeses) {
+        this.duracionMeses = duracionMeses;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getValorMensual() {
+        return valorMensual;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setValorMensual(double valorMensual) {
+        this.valorMensual = valorMensual;
     }
 
     public EstadoPlan getEstado() {
@@ -113,7 +114,7 @@ public abstract class PlanEntrenamiento implements IPlan {
     @Override
     public String toString() {
         return "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
-                + ", duracionEnSemanas=" + duracionEnSemanas + ", precio=" + precio
+                + ", duracionMeses=" + duracionMeses + ", valorMensual=" + valorMensual
                 + ", estado=" + estado;
     }
 }

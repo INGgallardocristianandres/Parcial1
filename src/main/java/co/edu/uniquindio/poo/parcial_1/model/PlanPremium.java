@@ -1,27 +1,24 @@
 package co.edu.uniquindio.poo.parcial_1.model;
 
 /**
- * Plan de entrenamiento premium: incluye acceso a clases grupales y a la
- * zona VIP del gimnasio.
+ * Plan de entrenamiento premium: incluye acceso VIP y/o a clases
+ * grupales, según lo que se configure al crearlo.
  */
 public class PlanPremium extends PlanEntrenamiento {
 
-    private boolean accesoGrupales;
-    private boolean accesoZonaVIP;
+    private boolean accesoVIP;
+    private boolean accesoClasesGrupales;
 
     /**
-     * Crea un plan premium con valores predeterminados. Pensado para ser
+     * Crea un plan premium con los datos indicados. Pensado para ser
      * construido a través de {@link PlanPremiumFactory}.
      */
-    public PlanPremium() {
-        super("PP-" + System.currentTimeMillis(),
-                "Plan Premium",
-                "Acceso a clases grupales y a la zona VIP",
-                8,
-                150000.0,
-                EstadoPlan.ACTIVO);
-        this.accesoGrupales = true;
-        this.accesoZonaVIP = true;
+    public PlanPremium(String codigo, String nombre, String descripcion,
+                       int duracionMeses, double valorMensual,
+                       boolean accesoVIP, boolean accesoClasesGrupales) {
+        super(codigo, nombre, descripcion, duracionMeses, valorMensual);
+        this.accesoVIP = accesoVIP;
+        this.accesoClasesGrupales = accesoClasesGrupales;
     }
 
     /**
@@ -29,34 +26,34 @@ public class PlanPremium extends PlanEntrenamiento {
      */
     private PlanPremium(PlanPremium otro) {
         super(otro);
-        this.accesoGrupales = otro.accesoGrupales;
-        this.accesoZonaVIP = otro.accesoZonaVIP;
+        this.accesoVIP = otro.accesoVIP;
+        this.accesoClasesGrupales = otro.accesoClasesGrupales;
     }
 
-    public boolean isAccesoGrupales() {
-        return accesoGrupales;
+    public boolean isAccesoVIP() {
+        return accesoVIP;
     }
 
-    public void setAccesoGrupales(boolean accesoGrupales) {
-        this.accesoGrupales = accesoGrupales;
+    public void setAccesoVIP(boolean accesoVIP) {
+        this.accesoVIP = accesoVIP;
     }
 
-    public boolean isAccesoZonaVIP() {
-        return accesoZonaVIP;
+    public boolean isAccesoClasesGrupales() {
+        return accesoClasesGrupales;
     }
 
-    public void setAccesoZonaVIP(boolean accesoZonaVIP) {
-        this.accesoZonaVIP = accesoZonaVIP;
+    public void setAccesoClasesGrupales(boolean accesoClasesGrupales) {
+        this.accesoClasesGrupales = accesoClasesGrupales;
     }
 
     @Override
     public double calcularAdicional() {
         double adicional = 0.0;
-        if (accesoGrupales) {
-            adicional += 20000.0;
-        }
-        if (accesoZonaVIP) {
+        if (accesoVIP) {
             adicional += 30000.0;
+        }
+        if (accesoClasesGrupales) {
+            adicional += 20000.0;
         }
         return adicional;
     }

@@ -1,25 +1,21 @@
 package co.edu.uniquindio.poo.parcial_1.model;
 
 /**
- * Plan de entrenamiento básico: acceso a las zonas generales del gimnasio,
- * sin servicios adicionales incluidos.
+ * Plan de entrenamiento básico: acceso a las máquinas y zonas generales
+ * del gimnasio, sin servicios adicionales incluidos.
  */
 public class PlanBasico extends PlanEntrenamiento {
 
-    private boolean accesoZonas;
+    private boolean accesoMaquinas;
 
     /**
-     * Crea un plan básico con valores predeterminados. Pensado para ser
+     * Crea un plan básico con los datos indicados. Pensado para ser
      * construido a través de {@link PlanBasicoFactory}.
      */
-    public PlanBasico() {
-        super("PB-" + System.currentTimeMillis(),
-                "Plan Básico",
-                "Acceso a las zonas generales del gimnasio",
-                4,
-                80000.0,
-                EstadoPlan.ACTIVO);
-        this.accesoZonas = true;
+    public PlanBasico(String codigo, String nombre, String descripcion,
+                      int duracionMeses, double valorMensual, boolean accesoMaquinas) {
+        super(codigo, nombre, descripcion, duracionMeses, valorMensual);
+        this.accesoMaquinas = accesoMaquinas;
     }
 
     /**
@@ -27,15 +23,15 @@ public class PlanBasico extends PlanEntrenamiento {
      */
     private PlanBasico(PlanBasico otro) {
         super(otro);
-        this.accesoZonas = otro.accesoZonas;
+        this.accesoMaquinas = otro.accesoMaquinas;
     }
 
-    public boolean isAccesoZonas() {
-        return accesoZonas;
+    public boolean isAccesoMaquinas() {
+        return accesoMaquinas;
     }
 
-    public void setAccesoZonas(boolean accesoZonas) {
-        this.accesoZonas = accesoZonas;
+    public void setAccesoMaquinas(boolean accesoMaquinas) {
+        this.accesoMaquinas = accesoMaquinas;
     }
 
     @Override
