@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.InscripcionViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <!-- Encabezado Rojo -->
+        <VBox alignment="CENTER" style="-fx-background-color: #C62828; -fx-background-radius: 8;">
+            <padding>
+                <Insets bottom="10.0" top="10.0" />
+            </padding>
+            <children>
+                <Label text="Gestión de Inscripciones" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+
+        <!-- Formulario -->
+        <HBox spacing="15.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Código Inscripción:" textFill="#333333" />
+                        <TextField fx:id="txtCodigoInscripcion" promptText="Ej: INS-001" style="-fx-border-color: #C62828; -fx-border-radius: 4;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Descuento (%):" textFill="#333333" />
+                        <TextField fx:id="txtDescuento" promptText="Ej: 10" style="-fx-border-color: #C62828; -fx-border-radius: 4;" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <!-- Servicios Extra -->
+        <HBox alignment="BOTTOM_LEFT" spacing="15.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Servicio Adicional:" textFill="#333333" />
+                        <ComboBox fx:id="cmbTipoServicio" maxWidth="1.7976931348623157E308" promptText="Seleccionar servicio" style="-fx-border-color: #C62828; -fx-border-radius: 4; -fx-background-color: #FFFFFF;" />
+                    </children>
+                </VBox>
+                <Button onAction="#handleAgregarServicio" style="-fx-background-color: #E53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="+ Agregar Servicio" />
+            </children>
+        </HBox>
+
+        <!-- Botón Principal -->
+        <Button maxWidth="1.7976931348623157E308" onAction="#handleCrearInscripcion" style="-fx-background-color: #B71C1C; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;" text="Crear e Inscribir (Builder)" />
+
+        <!-- Tabla de Resultados -->
+        <TableView fx:id="tblInscripciones" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colCodigo" prefWidth="200.0" text="Código Inscripción" />
+                <TableColumn fx:id="colTotal" prefWidth="250.0" text="Total a Pagar ($)" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>

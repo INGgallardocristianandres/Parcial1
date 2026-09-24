@@ -20,7 +20,7 @@ public class Persona {
     }
 
     public String getId() {
-        return correo;
+        return id;
     }
 
     public void setId(String id) {

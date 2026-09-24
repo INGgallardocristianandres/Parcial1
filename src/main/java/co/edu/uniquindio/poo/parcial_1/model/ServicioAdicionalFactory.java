@@ -1,12 +1,12 @@
-package co.edu.uniquindio.poo.parcial_1.model;
-/**
- * Interface que define la fábrica abstracta para la creación de servicios adicionales.
- */
-public interface ServicioAdicionalFactory {
-
+    package co.edu.uniquindio.poo.parcial_1.model;
     /**
-     * Método fábrica para la creación de instancias de {@link ServicioAdicional}.
-     * @return Instancia concreta de un servicio adicional.
+     * Interface que define la fábrica abstracta para la creación de servicios adicionales.
      */
-    ServicioAdicional crearServicio(String codigo, String nombre, String desc, double precio);
-}
+    public interface ServicioAdicionalFactory {
+
+        /**
+         * Método fábrica para la creación de instancias de {@link ServicioAdicional}.
+         * @return Instancia concreta de un servicio adicional.
+         */
+        ServicioAdicional crearServicio(String codigo, String nombre, String desc, double precio);
+    }

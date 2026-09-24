@@ -8,11 +8,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("InscripcionView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Sistema de Gestión - SmartGym");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1050, 680);
+        stage.setTitle("SmartGym - Panel de Control Principal");
         stage.setScene(scene);
         stage.show();
     }

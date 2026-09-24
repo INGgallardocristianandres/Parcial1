@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class InscripcionViewController {
                     new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().calcularPagoTotal()).asObject()
             );
 
+
+            listaInscripcionesTabla.addAll(Gimnasio.getInstancia().getListaInscripciones());
             tblInscripciones.setItems(listaInscripcionesTabla);
         }
     }
@@ -102,8 +105,15 @@ public class InscripcionViewController {
             return;
         }
 
+
+        Cliente clientePrueba = new Cliente("123", "Cristian", "3001234567", "cristian@email.com", 22, LocalDate.now());
+        PlanEntrenamiento planPrueba = new PlanBasico("P1", "Plan Básico", "Acceso a máquinas", 1, 50000, true);
+
         Inscripcion.Builder builder = new Inscripcion.Builder();
         builder.setCodigo(codigo)
+                .setFecha(LocalDate.now())
+                .setCliente(clientePrueba)
+                .setPlan(planPrueba)
                 .setDescuento(descuento);
 
         for (ServicioAdicional servicio : serviciosTemporales) {
@@ -112,26 +122,26 @@ public class InscripcionViewController {
 
         Inscripcion nuevaInscripcion = builder.build();
 
-        listaInscripcionesTabla.add(nuevaInscripcion);
-        serviciosTemporales.clear();
-        limpiarCampos();
 
-        mostrarInfo("Éxito", "Inscripción creada e integrada a la tabla correctamente.");
+        Gimnasio.getInstancia().registrarInscripcion(nuevaInscripcion);
+        listaInscripcionesTabla.add(nuevaInscripcion);
+
+        limpiarCampos();
+        mostrarInfo("Inscripción Creada", "La inscripción se registró exitosamente.");
     }
 
     /**
-     * Limpia las entradas del formulario.
+     * Limpia los componentes de entrada de la interfaz gráfica.
      */
     private void limpiarCampos() {
-        txtCodigoInscripcion.clear();
-        txtDescuento.clear();
-        if (cmbTipoServicio != null) {
-            cmbTipoServicio.getSelectionModel().clearSelection();
-        }
+        if (txtCodigoInscripcion != null) txtCodigoInscripcion.clear();
+        if (txtDescuento != null) txtDescuento.clear();
+        if (cmbTipoServicio != null) cmbTipoServicio.getSelectionModel().clearSelection();
+        serviciosTemporales.clear();
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
