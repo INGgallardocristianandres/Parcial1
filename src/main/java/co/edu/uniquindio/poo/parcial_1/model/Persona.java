@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.parcial_1.model;
 
-public class Persona {
+public abstract class Persona {
     /**
      * Clase abstracta que representa a una persona dentro del sistema.
      * Es la superclase de Cliente y Entrenador.
