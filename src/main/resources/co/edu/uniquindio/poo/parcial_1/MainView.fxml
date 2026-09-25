@@ -3,102 +3,33 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.MainViewController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="700.0" spacing="15.0" style="-fx-background-color: #f4f4f9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.MainViewController">
+    <padding>
+        <Insets bottom="40.0" left="50.0" right="50.0" top="40.0" />
+    </padding>
+    <children>
+        <Label text="Gimnasio SmartGym" textFill="#2c3e50">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+        </Label>
 
-    <!-- Barra Lateral Navegación (Rojo Institucional) -->
-    <left>
-        <VBox prefWidth="220.0" spacing="10.0" style="-fx-background-color: #B71C1C;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="20.0" left="15.0" right="15.0" top="25.0" />
-            </padding>
-            <children>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="SMART GYM" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Label>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sistema de Gestión" textFill="#FFCDD2">
-                    <font>
-                        <Font size="12.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="30.0" />
-                    </VBox.margin>
-                </Label>
+        <Button fx:id="btnGestionClientes" maxWidth="320.0" minHeight="45.0" onAction="#onGestionClientes" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #3498db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold;" text="Gestión de Clientes" />
 
-                <Button maxWidth="1.7976931348623157E308" onAction="#mostrarInscripciones" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5;" text="📋 Inscripciones">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                    </padding>
-                </Button>
+        <Button fx:id="btnGestionEntrenadores" maxWidth="320.0" minHeight="45.0" onAction="#onGestionEntrenadores" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" text="Gestión de Entrenadores" />
 
-                <Button maxWidth="1.7976931348623157E308" onAction="#mostrarClientes" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5;" text="👥 Clientes">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                    </padding>
-                </Button>
+        <Button fx:id="btnGestionPlanes" maxWidth="320.0" minHeight="45.0" onAction="#onGestionPlanes" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" text="Gestión de Planes de Entrenamiento" />
 
-                <Button maxWidth="1.7976931348623157E308" onAction="#mostrarEntrenadores" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5;" text="🏋️ Entrenadores">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                    </padding>
-                </Button>
-            </children>
-        </VBox>
-    </left>
+        <Button fx:id="btnCrearInscripcion" maxWidth="320.0" minHeight="45.0" onAction="#onCrearInscripcion" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" text="Crear Nueva Inscripción" />
 
-    <!-- Contenido Central con Pestañas -->
-    <center>
-        <TabPane fx:id="mainTabPane" style="-fx-tab-min-width: 120;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-            <tabs>
-                <Tab fx:id="tabInscripciones" text="Inscripciones">
-                    <content>
-                        <fx:include source="InscripcionView.fxml" />
-                    </content>
-                </Tab>
-                <Tab fx:id="tabClientes" text="Clientes">
-                    <content>
-                        <fx:include source="ClienteView.fxml" />
-                    </content>
-                </Tab>
-                <Tab fx:id="tabEntrenadores" text="Entrenadores">
-                    <content>
-                        <fx:include source="EntrenadorView.fxml" />
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </center>
+        <Button fx:id="btnConsultas" maxWidth="320.0" minHeight="45.0" onAction="#onConsultas" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" text="Consultas e Historiales" />
 
-    <!-- Barra Superior de Estado -->
-    <top>
-        <HBox alignment="CENTER_RIGHT" prefHeight="40.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets right="20.0" />
-            </padding>
-            <children>
-                <Label text="Estado Sistema: ACTIVO  |  Patrones: Singleton, Builder, Factory, Prototype" textFill="#E0E0E0">
-                    <font>
-                        <Font size="11.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-    </top>
-</BorderPane>
+        <Button fx:id="btnAlertas" maxWidth="320.0" minHeight="45.0" onAction="#onAlertas" style="-fx-font-size: 14px; -fx-background-color: #ffcccc; -fx-border-color: #ff4d4d; -fx-border-radius: 5; -fx-background-radius: 5; -fx-text-fill: #900c3f; -fx-font-weight: bold;" text="Alertas / Estado de Membresías" />
+    </children>
+</VBox>

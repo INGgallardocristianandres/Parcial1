@@ -9,66 +9,80 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.InscripcionViewController">
+<VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="750.0" spacing="12.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.parcial_1.viewController.InscripcionViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <!-- Encabezado Rojo -->
-        <VBox alignment="CENTER" style="-fx-background-color: #C62828; -fx-background-radius: 8;">
-            <padding>
-                <Insets bottom="10.0" top="10.0" />
-            </padding>
-            <children>
-                <Label text="Gestión de Inscripciones" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="20.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestión de Inscripciones (Builder &amp; Factory)" />
 
-        <!-- Formulario -->
-        <HBox spacing="15.0">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
             <children>
-                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label text="Código Inscripción:" textFill="#333333" />
-                        <TextField fx:id="txtCodigoInscripcion" promptText="Ej: INS-001" style="-fx-border-color: #C62828; -fx-border-radius: 4;" />
-                    </children>
-                </VBox>
-                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label text="Descuento (%):" textFill="#333333" />
-                        <TextField fx:id="txtDescuento" promptText="Ej: 10" style="-fx-border-color: #C62828; -fx-border-radius: 4;" />
-                    </children>
-                </VBox>
+                <Label prefWidth="150.0" text="Código Inscripción:" />
+                <TextField fx:id="txtCodigoInscripcion" prefWidth="250.0" />
             </children>
         </HBox>
 
-        <!-- Servicios Extra -->
-        <HBox alignment="BOTTOM_LEFT" spacing="15.0">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
             <children>
-                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label text="Servicio Adicional:" textFill="#333333" />
-                        <ComboBox fx:id="cmbTipoServicio" maxWidth="1.7976931348623157E308" promptText="Seleccionar servicio" style="-fx-border-color: #C62828; -fx-border-radius: 4; -fx-background-color: #FFFFFF;" />
-                    </children>
-                </VBox>
-                <Button onAction="#handleAgregarServicio" style="-fx-background-color: #E53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="+ Agregar Servicio" />
+                <Label prefWidth="150.0" text="Cliente:" />
+                <ComboBox fx:id="cmbClientes" prefWidth="250.0" />
             </children>
         </HBox>
 
-        <!-- Botón Principal -->
-        <Button maxWidth="1.7976931348623157E308" onAction="#handleCrearInscripcion" style="-fx-background-color: #B71C1C; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;" text="Crear e Inscribir (Builder)" />
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Entrenador Responsable:" />
+                <ComboBox fx:id="cmbEntrenadores" prefWidth="250.0" />
+            </children>
+        </HBox>
 
-        <!-- Tabla de Resultados -->
-        <TableView fx:id="tblInscripciones" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Tipo de Plan:" />
+                <ComboBox fx:id="cmbPlanes" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Descuento (%):" />
+                <TextField fx:id="txtDescuento" prefWidth="250.0" text="0.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Servicio Adicional:" />
+                <ComboBox fx:id="cmbTipoServicio" prefWidth="250.0" />
+                <Button onAction="#handleAgregarServicio" text="Añadir Servicio" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Label prefWidth="150.0" text="Nuevo Estado Plan:" />
+                <ComboBox fx:id="cmbNuevoEstado" prefWidth="250.0" />
+                <Button onAction="#handleCambiarEstado" text="Actualizar Estado" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="15.0">
+            <children>
+                <Button onAction="#handleCrearInscripcion" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;" text="Guardar Inscripción" />
+                <Button onAction="#onVolver" text="Volver" />
+            </children>
+        </HBox>
+
+        <TableView fx:id="tblInscripciones" prefHeight="220.0" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colCodigo" prefWidth="200.0" text="Código Inscripción" />
-                <TableColumn fx:id="colTotal" prefWidth="250.0" text="Total a Pagar ($)" />
+                <TableColumn fx:id="colCodigo" prefWidth="90.0" text="Código" />
+                <TableColumn fx:id="colCliente" prefWidth="180.0" text="Cliente" />
+                <TableColumn fx:id="colPlan" prefWidth="150.0" text="Plan" />
+                <TableColumn fx:id="colEntrenador" prefWidth="150.0" text="Entrenador" />
+                <TableColumn fx:id="colEstado" prefWidth="90.0" text="Estado" />
+                <TableColumn fx:id="colTotal" prefWidth="90.0" text="Total ($)" />
             </columns>
         </TableView>
     </children>
